@@ -1,7 +1,8 @@
-import xgboost as xgb, os, pandas as pd, time
+import xgboost as xgb, os, pandas as pd, time, shap, matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.feature_extraction.text import TfidfVectorizer
+from array import array
 
 # Files
 output_file = 'XGBoostOutput.csv'
@@ -33,6 +34,8 @@ df['labels'] = df['Classification'].map({'Normal': 0, 'Anomalous': 1})
 input_data = df['full_request_data']
 label_data = df['labels']
 
+shap.initjs()
+
 # Training + Testing
 X_train, X_test, y_train, y_test = train_test_split(input_data, label_data, test_size=0.2, random_state=42)
 
@@ -51,6 +54,17 @@ model = xgb.XGBClassifier(
 )
 
 model.fit(X_train_vec, y_train)
+
+# Influence for each prediction
+explainer = shap.TreeExplainer(model)
+explanation = explainer(X_test_vec.toarray())
+
+
+''' SHAP Values (This basically gives a pos / neg number that leans towards a specific prediction). The magnitude will be the abs value, and it will show how heavilly it is going towards a prediction.
+'''
+
+shap_force = shap.plots.force(explainer.expected_value, explanation.values[0], X_test_vec[0].toarray())
+shap.save_html(f"{joined_output}.html", shap_force)
 
 # Evaluation
 prediction = model.predict(X_test_vec)
@@ -82,3 +96,5 @@ except KeyboardInterrupt:
         f.write(f"True Negatives (TN): {tn}\n")
         f.write(f"False Positives (FP): {fp}\n")
         f.write(f"False Negatives (FN): {fn}\n")
+    shap_sum = shap.summary_plot(explanation.values, X_test_vec.toarray(), feature_names=vector.get_feature_names_out())
+
