@@ -6,3 +6,9 @@
     accuracy                           0.92     12213
    macro avg       0.92      0.93      0.92     12213
 weighted avg       0.93      0.92      0.92     12213
+
+=== Confusion Matrix Stats ===
+True Positives (TP): 4854
+True Negatives (TN): 6411
+False Positives (FP): 737
+False Negatives (FN): 211
