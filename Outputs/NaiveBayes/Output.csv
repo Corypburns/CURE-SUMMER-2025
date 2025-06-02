@@ -6,9 +6,3 @@ Anomalous 1 GET  http://localhost:8080/tienda1/publico/autenticar.jsp?modo=entra
 Anomalous 1 POST id=3%2F&nombre=Vino+Rioja&precio=85&cantidad=35&B1=A%F1adir+al+carrito http://localhost:8080/tienda1/publico/anadir.jsp HTTP/1.1
 Anomalous 1 GET  http://localhost:8080/tienda1/publico/entrar.jsp?errorMsg=Credenciales+incorrectas%27%29%3Bwaitfor+delay+%270%3A0%3A15%27%3B-- HTTP/1.1
 Anomalous 1 GET  http://localhost:8080/tienda1/publico/vaciar.jsp?B2=any%250ASet-cookie%253A%2BTamper%253D1041264011025374727 HTTP/1.1
-Anomalous 1 GET  http://localhost:8080/tienda1.bak HTTP/1.1
-Anomalous 1 GET  http://localhost:8080/tienda1/publico/registro.jsp?modo=registro&login=majd&password=any%250D%250ASet-cookie%253A%2BTamper%253D5765205567234876235&nombre=Osmar&apellidos=Blandon+Dato&email=scales_vlaenderen%40conoceagelespa%F1a.gg&dni=15613671Y&direccion=Calle+Isla+De+Corcega+87%2C+1-B&ciudad=Viladecans&cp=48144&provincia=Barcelona&ntc=4635391000655529&B1=Registrar HTTP/1.1
-Normal 0 GET  http://localhost:8080/tienda1/miembros/imagenes/castro.jpg HTTP/1.1
-Normal 0 GET  http://localhost:8080/tienda1/miembros/imagenes/zarauz.jpg HTTP/1.1
-Anomalous 1 GET  http://localhost:8080/tienda1/publico/anadir.jsp?id=2&nombre=Vino+Rioja&precio=85%7C&cantidad=67&B1=A%F1adir+al+carrito HTTP/1.1
-Normal 0 GET  http://localhost:8080/tienda1/publico/registro.jsp?modo=registro&login=peiser&password=9iri7aza&nombre=Nevel&apellidos=Domenge+Canelas&email=kirland-lincovsky%40la-sexta-f1.fo&dni=48549953N&direccion=Rio+Jarama+194+6-H&ciudad=Valverdejo&cp=20150&provincia=Toledo&ntc=9766800722499068&B1=Registrar HTTP/1.1

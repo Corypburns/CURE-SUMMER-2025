@@ -4,3 +4,9 @@ Normal,0,GET,,http://localhost:8080/tienda1/miembros/imagenes/castro.jpg HTTP/1.
 Anomalous,1,GET,,http://localhost:8080/tienda1/publico/registro.jsp?modo=registro&login=tejani&password=arable&nombre=Josiana&apellidos=De+Anta+Colondres&email=agunda-wulff%40onoratoinformatica.aq&dni=427%278643%27&direccion=C%2F+Jose+Zamoray%2C+S%2FN+4C&ciudad=Narros+del+Puerto&cp=23770&provincia=Tarragona&ntc=2400850921681991&B1=Registrar HTTP/1.1
 Normal,0,GET,,http://localhost:8080/tienda1/miembros/editar.jsp?modo=registro&login=gargulak&password=Bu7c2Pi%E9&nombre=Deysi&apellidos=Benapr%E9s+Vaqu%E9&email=ontiveros%40masqueclases.th&dni=50422961S&direccion=C%2Fjon+Pe%F1uelas%2C+117%2C+&ciudad=Quintanas+de+Gormaz&cp=38435&provincia=Valencia&ntc=9947210285103354&B1=Registrar HTTP/1.1
 Anomalous,1,GET,,http://localhost:8080/tienda1/publico/autenticar.jsp?modo=entrar&login=bienek&pwd=cloqu%27e%2Fro&remember=off&B1=Entrar HTTP/1.1
+Anomalous,1,POST,id=3%2F&nombre=Vino+Rioja&precio=85&cantidad=35&B1=A%F1adir+al+carrito,http://localhost:8080/tienda1/publico/anadir.jsp HTTP/1.1
+Anomalous,1,GET,,http://localhost:8080/tienda1/publico/entrar.jsp?errorMsg=Credenciales+incorrectas%27%29%3Bwaitfor+delay+%270%3A0%3A15%27%3B-- HTTP/1.1
+Anomalous,1,GET,,http://localhost:8080/tienda1/publico/vaciar.jsp?B2=any%250ASet-cookie%253A%2BTamper%253D1041264011025374727 HTTP/1.1
+Anomalous,1,GET,,http://localhost:8080/tienda1.bak HTTP/1.1
+Anomalous,1,GET,,http://localhost:8080/tienda1/publico/registro.jsp?modo=registro&login=majd&password=any%250D%250ASet-cookie%253A%2BTamper%253D5765205567234876235&nombre=Osmar&apellidos=Blandon+Dato&email=scales_vlaenderen%40conoceagelespa%F1a.gg&dni=15613671Y&direccion=Calle+Isla+De+Corcega+87%2C+1-B&ciudad=Viladecans&cp=48144&provincia=Barcelona&ntc=4635391000655529&B1=Registrar HTTP/1.1
+Normal,0,GET,,http://localhost:8080/tienda1/miembros/imagenes/castro.jpg HTTP/1.1
