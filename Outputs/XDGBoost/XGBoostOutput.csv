@@ -16,3 +16,6 @@ Normal,0,GET,,http://localhost:8080/tienda1/publico/registro.jsp?modo=registro&l
 Anomalous,1,GET,,http://localhost:8080/tienda1/publico/pagar.jsp?modo=insertar&precioA=8659&B1=Pasar+por+caja HTTP/1.1
 Anomalous,1,GET,,http://localhost:8080/tienda1/publico/pagar.jsp?modo=insertar&precio=6840&B1=Pasar+por+caja%2F HTTP/1.1
 Anomalous,1,POST,B2A=Vaciar+carrito,http://localhost:8080/tienda1/publico/vaciar.jsp HTTP/1.1
+Anomalous,1,GET,,http://localhost:8080/tienda1/global.OLD HTTP/1.1
+Anomalous,1,POST,errorMsg=Credenciales+incorrectas%4040,http://localhost:8080/tienda1/publico/entrar.jsp HTTP/1.1
+Anomalous,1,GET,,http://localhost:8080/busytime.nsf HTTP/1.1
