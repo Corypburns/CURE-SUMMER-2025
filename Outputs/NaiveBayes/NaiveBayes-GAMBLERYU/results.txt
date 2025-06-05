@@ -1,0 +1,14 @@
+              precision    recall  f1-score   support
+
+           0       0.89      0.87      0.88     14147
+           1       0.88      0.91      0.89     15519
+
+    accuracy                           0.89     29666
+   macro avg       0.89      0.89      0.89     29666
+weighted avg       0.89      0.89      0.89     29666
+
+=== Confusion Matrix Stats ===
+True Positives (TP): 14051
+True Negatives (TN): 12272
+False Positives (FP): 1875
+False Negatives (FN): 1468
