@@ -1,4 +1,4 @@
-import xgboost as xgb, os, pandas as pd, time, matplotlib.pyplot as mpl
+import xgboost as xgb, os, pandas as pd, time, matplotlib.pyplot as mpl, csv
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -6,30 +6,32 @@ from array import array
 from datetime import datetime
 
 # Paths
-output_path = '/home/cory/code/CISResearchSummer2025/Outputs/XDGBoost'
-dataset_path = '/home/cory/code/CISResearchSummer2025/DATASETS/CSIC2010/csic_database.csv'
+output_path = '/home/cory/code/CISResearchSummer2025/Outputs/XDGBoost/XGBoost-SQLiV3'
+dataset_path = '/home/cory/code/CISResearchSummer2025/DATASETS/SQLiV3/SQLiV3_CLEANED.csv'
 os.makedirs(output_path, exist_ok=True)
 
 # Clean timestamp
 now = datetime.now().strftime("%y-%m-%d_%H-%M-%S")
 output_file = os.path.join(output_path, f"XGBoostOutput_{now}.csv")
-shap_html_file = os.path.join(output_path, f"shap_output_{now}.html")
+
+if not os.path.exists(output_file) or os.path.getsize(output_file) == 0:
+    with open(output_file, mode='w') as f:
+        f.write("Sentence, Prediction, Confidence, Actual\n")
 
 # Load Dataset
 df = pd.read_csv(dataset_path)
 
 # Fill missing values
-df['content'] = df['content'].fillna('')
-df['URL'] = df['URL'].fillna('')
-df['Method'] = df['Method'].fillna('')
+df = df[['Sentence', 'Label']].dropna()
+df['Label'] = df['Label'].astype(int)
 
-# Combine fields into request text
-df['full_request_data'] = df['content'] + ' ' + df['URL'] + ' ' + df['Method']
-df['labels'] = df['Classification'].map({'Normal': 0, 'Anomalous': 1})
+# Data labeled in the csv file
+df['Sentence']
+df['Label']
 
 # Inputs and labels
-input_data = df['full_request_data']
-label_data = df['labels']
+input_data = df['Sentence']
+label_data = df['Label']
 
 # Train/Test Split
 X_train, X_test, y_train, y_test = train_test_split(input_data, label_data, test_size=0.2, random_state=42)
@@ -61,17 +63,16 @@ tn, fp, fn, tp = confusion_matrix(y_test, prediction).ravel()
 # Write predictions to CSV
 try:
     with open(output_file, mode='w') as f:
+        writer = csv.writer(f)
         f.write("Predicted,Actual,Confidence,Method,Content,URL\n")
         for indx, (i, predict) in enumerate(zip(X_index, prediction)):
-            label = df.loc[i, 'Classification']
-            url = df.loc[i, 'URL']
-            method = df.loc[i, 'Method']
-            content = df.loc[i, 'content']
+            sentence = df.loc[i, 'Sentence']
+            label = df.loc[i, 'Label']
             confidence = (conf[indx][predict]) * 100
-            print_statement = f"URL: {url}\nMethod: {method}\nContent: {content}\nPrediction: {predict} | Actual: {label} | Confidence: {confidence:.2f}%\n"
-            f.write(f"{predict},{label},{confidence:.2f}%,{method},{content},{url}\n")
-            time.sleep(0.5)
+            print_statement = f"\nSentence: {sentence}\nLabel: {label}\nPrediction: {predict}\nConfidence: {confidence:.2f}"
             print(print_statement)
+            writer.writerow([sentence, predict, f"{confidence:.2f}%", label])
+            time.sleep(0.5)
         ConfusionMatrixDisplay.from_predictions(y_test, prediction)
         mpl.show()
 except KeyboardInterrupt:

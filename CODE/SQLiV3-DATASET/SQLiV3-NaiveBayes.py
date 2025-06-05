@@ -9,7 +9,7 @@ from datetime import datetime
 
 # CSV Headers
 file_path = '/home/cory/code/CISResearchSummer2025/DATASETS/SQLiV3/SQLiV3_CLEANED.csv'
-now = datetime.now().strftime("%y-%m-%d %HH:%MM:%SS")
+now = datetime.now().strftime("%y-%m-%d_%H-%M-%S")
 output_path = '/home/cory/code/CISResearchSummer2025/Outputs/NaiveBayes/SQLiV3-Outputs'
 joined_output_path = os.path.join(output_path, f'Output_{now}.csv')
 
@@ -52,15 +52,16 @@ tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()
 # Printing
 try:
     with open(joined_output_path, mode='a') as f:
+        writer = csv.writer(f)
         for indx, (i, prediction) in enumerate(zip(X_test_index, y_pred)):
             sentence = df.loc[i, 'Sentence']
             label = df.loc[i, 'Label']
             confidence = (conf[indx][prediction]) * 100
-            print_statement = f"Sentence: {sentence}\nLabel: {label}\nPrediction: {prediction}\nConfidence: {confidence:.2f}"
+            print_statement = f"\nSentence: {sentence}\nLabel: {label}\nPrediction: {prediction}\nConfidence: {confidence:.2f}"
             print(print_statement)
-            f.write(f"{sentence}, {prediction}, {label}, {confidence:.2f}%\n")
+            writer.writerow([sentence, prediction, f"{confidence:.2f}%", label])
             time.sleep(.5)
-    print("True Positives (TP): {tp}\nTrue Negatives (TN): {tn}\nFalse Positives (FP): {fp}\nFalse Negatives (FN): {fn}")
+    print(f"True Positives (TP): {tp}\nTrue Negatives (TN): {tn}\nFalse Positives (FP): {fp}\nFalse Negatives (FN): {fn}")
     ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
     mpl.show()
 except KeyboardInterrupt:
