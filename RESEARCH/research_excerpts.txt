@@ -1,0 +1,5 @@
+One particularly interesting development is
+that computer tutoring systems are starting to incorporate abilities to infer models
+of student competence from observed performance. Inferring the scope of a
+student's knowledge and skills in a particular area allows much more effective
+and individualized tutoring of the student. 
